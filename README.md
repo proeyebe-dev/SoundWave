@@ -399,29 +399,75 @@ src/services/userService.js
 
 ## 🚀 Guide de démarrage
 
-### 1. Cloner le dépôt
+> ⚠️ **À lire attentivement par chaque membre avant de commencer à coder.**
+
+---
+
+### Étape 1 — Cloner le dépôt
+
 ```bash
-git clone https://github.com/VOTRE_USERNAME/soundwave.git
+git clone https://github.com/proeyebe-dev/soundwave.git
 cd soundwave
 ```
 
-### 2. Installer les dépendances
+---
+
+### Étape 2 — Installer les dépendances
+
 ```bash
 npm install
 ```
 
-### 3. Configurer les variables d'environnement
+---
+
+### Étape 3 — Configurer les variables d'environnement
+
 ```bash
 cp .env.example .env
 ```
-Ouvre `.env` et remplis avec tes clés Supabase :
+
+Ouvre le fichier `.env` et remplis avec les clés Supabase (demande-les au Membre 1) :
 ```env
 VITE_SUPABASE_URL=https://xxxxxxxxxxxx.supabase.co
 VITE_SUPABASE_ANON_KEY=ta_clé_anon_publique
 ```
 > 🔑 Ces clés se trouvent dans **Supabase → Project Settings → API**
 
-### 4. Lancer l'application
+---
+
+### Étape 4 — Créer ta branche de travail
+
+Chaque membre crée **sa propre branche** à partir de `develop`. Repère ton numéro dans le tableau ci-dessous et tape les commandes correspondantes :
+
+| Membre | Commande à taper |
+|--------|-----------------|
+| **Membre 1** | `git checkout -b feature/setup` |
+| **Membre 2** | `git checkout -b feature/auth` |
+| **Membre 3** | `git checkout -b feature/layout` |
+| **Membre 4** | `git checkout -b feature/player` |
+| **Membre 5** | `git checkout -b feature/home` |
+| **Membre 6** | `git checkout -b feature/search` |
+| **Membre 7** | `git checkout -b feature/playlists` |
+| **Membre 8** | `git checkout -b feature/profile-ui` |
+
+**Exemple pour le Membre 4 :**
+```bash
+# Se placer sur develop en premier
+git checkout develop
+
+# Créer sa branche
+git checkout -b feature/player
+
+# Pousser la branche sur GitHub
+git push -u origin feature/player
+```
+
+> ✅ Tu travailles **toujours** sur ta branche. Ne touche jamais à `main` ou `develop` directement.
+
+---
+
+### Étape 5 — Lancer l'application
+
 ```bash
 npm run dev
 ```
@@ -439,23 +485,34 @@ feature/xxx → développement d'une fonctionnalité
 fix/xxx     → correction de bug
 ```
 
-### Workflow à suivre par chaque membre
+### Workflow quotidien à suivre par chaque membre
+
+**Avant de commencer à coder (chaque jour) :**
 ```bash
-# 1. Se placer sur develop et récupérer les dernières modifications
+# 1. Récupérer les dernières modifications de develop
 git checkout develop
 git pull origin develop
 
-# 2. Créer sa branche de travail
-git checkout -b feature/ma-fonctionnalite
+# 2. Retourner sur ta branche et intégrer les nouveautés
+git checkout feature/ma-branche
+git merge develop
+```
 
-# 3. Travailler, puis committer régulièrement
+**Pendant que tu codes :**
+```bash
+# 3. Committer régulièrement (pas seulement à la fin !)
 git add .
 git commit -m "feat: description de ce que j'ai fait"
+```
 
-# 4. Pousser sa branche sur GitHub
-git push origin feature/ma-fonctionnalite
+**Quand ta fonctionnalité est terminée :**
+```bash
+# 4. Pousser ta branche sur GitHub
+git push origin feature/ma-branche
 
-# 5. Ouvrir une Pull Request sur GitHub : feature/xxx → develop
+# 5. Aller sur GitHub → ouvrir une Pull Request
+#    Ta branche → develop
+#    Attendre la relecture d'un autre membre avant de merger
 ```
 
 ### Format des messages de commit
