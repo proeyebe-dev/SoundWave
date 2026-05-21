@@ -437,32 +437,67 @@ VITE_SUPABASE_ANON_KEY=ta_clé_anon_publique
 
 ### Étape 4 — Créer ta branche de travail
 
-Chaque membre crée **sa propre branche** à partir de `develop`. Repère ton numéro dans le tableau ci-dessous et tape les commandes correspondantes :
+> 💡 **C'est quoi une branche ?**
+> Une branche est une copie isolée du projet où tu travailles sans affecter le code des autres.
+> Chaque membre a la sienne. On assemble tout à la fin via des Pull Requests.
 
-| Membre | Commande à taper |
-|--------|-----------------|
-| **Membre 1** | `git checkout -b feature/setup` |
-| **Membre 2** | `git checkout -b feature/auth` |
-| **Membre 3** | `git checkout -b feature/layout` |
-| **Membre 4** | `git checkout -b feature/player` |
-| **Membre 5** | `git checkout -b feature/home` |
-| **Membre 6** | `git checkout -b feature/search` |
-| **Membre 7** | `git checkout -b feature/playlists` |
-| **Membre 8** | `git checkout -b feature/profile-ui` |
+**Suis ces 5 étapes dans l'ordre :**
 
-**Exemple pour le Membre 4 :**
+**1. Ouvre un terminal** dans le dossier du projet :
 ```bash
-# Se placer sur develop en premier
-git checkout develop
-
-# Créer sa branche
-git checkout -b feature/player
-
-# Pousser la branche sur GitHub
-git push -u origin feature/player
+cd soundwave
 ```
 
-> ✅ Tu travailles **toujours** sur ta branche. Ne touche jamais à `main` ou `develop` directement.
+**2. Vérifie que Git est bien configuré avec ton identité** (à faire une seule fois) :
+```bash
+git config --global user.name "Ton Prénom Nom"
+git config --global user.email "tonemail@exemple.com"
+```
+
+**3. Place-toi sur la branche `develop`** (le point de départ de tout le monde) :
+```bash
+git checkout develop
+```
+Tu dois voir : `Switched to branch 'develop'`
+
+**4. Crée ta branche** selon ton numéro de membre :
+
+| Membre | Rôle | Commande à taper |
+|--------|------|-----------------|
+| **Membre 1** | Chef de projet & Supabase | `git checkout -b feature/setup` |
+| **Membre 2** | Authentification | `git checkout -b feature/auth` |
+| **Membre 3** | Layout & Navigation | `git checkout -b feature/layout` |
+| **Membre 4** | Lecteur de musique | `git checkout -b feature/player` |
+| **Membre 5** | Page d'accueil | `git checkout -b feature/home` |
+| **Membre 6** | Recherche | `git checkout -b feature/search` |
+| **Membre 7** | Playlists & Bibliothèque | `git checkout -b feature/playlists` |
+| **Membre 8** | Profil & UI | `git checkout -b feature/profile-ui` |
+
+Tu dois voir : `Switched to a new branch 'feature/...'`
+
+**5. Pousse ta branche sur GitHub** pour qu'elle soit visible par toute l'équipe :
+```bash
+git push -u origin feature/NOM_DE_TA_BRANCHE
+```
+
+Par exemple pour le Membre 2 :
+```bash
+git push -u origin feature/auth
+```
+
+**6. Vérifie que tu es bien sur ta branche** :
+```bash
+git branch
+```
+La branche avec `*` devant est celle où tu es. Exemple :
+```
+  develop
+* feature/auth     ← tu es ici ✅
+  main
+```
+
+> ✅ À partir de maintenant, tu travailles **uniquement sur ta branche**.
+> ❌ Ne touche jamais à `main` ou `develop` directement.
 
 ---
 
