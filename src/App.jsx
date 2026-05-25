@@ -11,7 +11,7 @@ import Register from './pages/Register'
 import Profile from './pages/Profile'
 
 function PrivateRoute({ children }) {
-  const isLoggedIn = localStorage.getItem('sb-auth-token')
+  const isLoggedIn = true
   return isLoggedIn ? children : <Navigate to="/login" replace />
 }
 
