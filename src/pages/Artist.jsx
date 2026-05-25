@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { supabase } from '../services/supabase'
-import { Music } from 'lucide-react'
+import { Music, User } from 'lucide-react'
 
 export default function Artist() {
   const { id } = useParams()
@@ -39,17 +39,13 @@ export default function Artist() {
           <h1 className="text-4xl font-bold">{artist.name}</h1>
         </div>
       </div>
-
       <div className="p-6 space-y-8">
-        {artis
- <div className="p-6 space-y-8">
         {artist.bio && (
           <div>
             <h2 className="text-xl font-bold mb-2">À propos</h2>
             <p className="text-zinc-400">{artist.bio}</p>
           </div>
         )}
-
         {songs.length > 0 && (
           <div>
             <h2 className="text-xl font-bold mb-4">Chansons populaires</h2>
@@ -58,17 +54,16 @@ export default function Artist() {
                 <div key={song.id} className="flex items-center gap-4 p-2 hover:bg-zinc-800 rounded-lg cursor-pointer">
                   <span className="text-zinc-400 w-4 text-sm">{index + 1}</span>
                   <div className="w-10 h-10 bg-zinc-700 rounded flex items-center justify-center">
-                    {song.cover_url ? <img src={song.cover_url} alt={song.title} className="w-full h-full object-cover rounded" /> : <Music size={16} className="text-zinc-400" />}
+                    {song.cover_url
+                      ? <img src={song.cover_url} alt={song.title} className="w-full h-full object-cover rounded" />
+                      : <Music size={16} className="text-zinc-400" />}
                   </div>
-                  <div className="flex-1">
-                    <p className="text-white text-sm font-medium">{song.title}</p>
-                  </div>
+                  <p className="text-white text-sm font-medium">{song.title}</p>
                 </div>
               ))}
             </div>
           </div>
         )}
-
         {albums.length > 0 && (
           <div>
             <h2 className="text-xl font-bold mb-4">Albums</h2>
@@ -76,7 +71,9 @@ export default function Artist() {
               {albums.map(album => (
                 <div key={album.id} className="bg-zinc-800 p-3 rounded-lg cursor-pointer hover:bg-zinc-700">
                   <div className="w-full aspect-square bg-zinc-700 rounded mb-3 flex items-center justify-center">
-                    {album.cover_url ? <img src={album.cover_url} alt={album.title} className="w-full h-full object-cover rounded" /> : <Music size={24} className="text-zinc-400" />}
+                    {album.cover_url
+                      ? <img src={album.cover_url} alt={album.title} className="w-full h-full object-cover rounded" />
+                      : <Music size={24} className="text-zinc-400" />}
                   </div>
                   <p className="text-white text-sm font-medium truncate">{album.title}</p>
                   <p className="text-zinc-400 text-xs">{album.release_year}</p>
@@ -84,7 +81,7 @@ export default function Artist() {
               ))}
             </div>
           </div>
- )}
+        )}
       </div>
     </div>
   )
