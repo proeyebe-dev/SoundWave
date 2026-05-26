@@ -11,6 +11,8 @@ const genres = [
   { name: 'Jazz', color: '#509bf5', emoji: '🎷' },
   { name: 'Classique', color: '#7d4b32', emoji: '🎻' },
   { name: 'Ambient', color: '#1a7340', emoji: '🌊' },
+  { name: 'Afrobeats', color: '#e65100', emoji: '🥁' },
+  { name: 'Rap', color: '#1b5e20', emoji: '🎧' },
 ]
 
 export default function Search() {
@@ -28,6 +30,7 @@ export default function Search() {
             {genres.map((genre) => (
               <div
                 key={genre.name}
+                onClick={() => setQuery(genre.name)}
                 className="relative rounded-lg p-4 h-24 flex items-end font-bold text-sm cursor-pointer hover:scale-105 transition-transform overflow-hidden"
                 style={{ background: genre.color }}
               >

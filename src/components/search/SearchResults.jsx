@@ -1,8 +1,11 @@
 import { Music, User, Play } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import usePlayerStore from '../../store/playerStore'
 
 function SongItem({ song, index }) {
+  const { playSong } = usePlayerStore()
   return (
-    <div className="flex items-center gap-4 px-4 py-2 rounded-md hover:bg-zinc-800 group transition cursor-pointer">
+    <div onClick={() => playSong(song)} className="flex items-center gap-4 px-4 py-2 rounded-md hover:bg-zinc-800 group transition cursor-pointer">
       <span className="w-6 text-right text-sm text-zinc-400 group-hover:hidden">{index + 1}</span>
       <Play size={14} className="hidden group-hover:block text-white" />
       <div className="flex-1 min-w-0">
@@ -17,8 +20,9 @@ function SongItem({ song, index }) {
 }
 
 function ArtistItem({ artist }) {
+  const navigate = useNavigate()
   return (
-    <div className="flex-shrink-0 w-36 cursor-pointer group text-center">
+    <div onClick={() => navigate(`/artist/${artist.id}`)} className="flex-shrink-0 w-36 cursor-pointer group text-center">
       <div className="w-36 h-36 rounded-full mx-auto mb-3 bg-zinc-700 flex items-center justify-center shadow-lg group-hover:shadow-xl transition overflow-hidden">
         {artist.image_url
           ? <img src={artist.image_url} alt={artist.name} className="w-full h-full object-cover" />
@@ -31,8 +35,9 @@ function ArtistItem({ artist }) {
 }
 
 function AlbumItem({ album }) {
+  const navigate = useNavigate()
   return (
-    <div className="cursor-pointer group">
+    <div onClick={() => navigate(`/album/${album.id}`)} className="cursor-pointer group">
       <div className="aspect-square rounded-lg mb-3 bg-zinc-700 flex items-center justify-center shadow-lg group-hover:shadow-xl transition overflow-hidden">
         {album.cover_url
           ? <img src={album.cover_url} alt={album.title} className="w-full h-full object-cover" />
