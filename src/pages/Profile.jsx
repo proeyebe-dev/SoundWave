@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { getProfile, updateProfile, updateAvatar, getCurrentUser } from "../services/userService";
+import { getProfile, updateProfile, updateAvatar } from "../services/userService";
+import { useAuth } from "../hooks/useAuth";
 import Button from "../components/ui/Button";
 import Input from "../components/ui/Input";
 import Loader from "../components/ui/Loader";
@@ -10,7 +11,7 @@ const Profile = () => {
   const { toasts, addToast, removeToast } = useToast();
   const fileInputRef = useRef(null);
 
-  const [user,            setUser]            = useState(null);
+  const { user } = useAuth();
   const [profile,         setProfile]         = useState(null);
   const [loading,         setLoading]         = useState(true);
   const [saving,          setSaving]          = useState(false);
@@ -24,9 +25,7 @@ const Profile = () => {
   useEffect(() => {
     const load = async () => {
       try {
-        const currentUser = await getCurrentUser();
-        setUser(currentUser);
-        const profileData = await getProfile(currentUser.id);
+        const profileData = await getProfile(user.id);
         setProfile(profileData);
         setForm({
           full_name: profileData.full_name || "",
@@ -45,6 +44,7 @@ const Profile = () => {
   const validate = () => {
     const e = {};
     if (!form.full_name.trim())   e.full_name = "Le nom est requis";
+    if (!user) return;
     if (!form.username.trim())    e.username  = "Le nom d'utilisateur est requis";
     if (form.username.length < 3) e.username  = "Minimum 3 caractères";
     return e;
